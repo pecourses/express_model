@@ -1,0 +1,1 @@
+module.exports.validateTask = require('./validate.task.mw');
