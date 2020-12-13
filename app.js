@@ -1,10 +1,10 @@
 const express = require('express');
-const {validateTask} = require('./middleware');
-const {taskController} = require('./controllers');
+const { errorHandlers, validateTask } = require('./middleware');
+const { taskController } = require('./controllers');
 
 const app = express();
 
-app.use(express.json()); //built-in body-parser
+app.use(express.json({ type: 'application/vnd.api+json'})); //built-in body-parser
 
 // create task
 app.post('/task', validateTask.validateOnCreate, taskController.createTask);
@@ -15,14 +15,12 @@ app.get('/tasks', taskController.getAllTasks);
 app
   .route('/tasks/:taskId')
   .get(taskController.getTask)
-  .patch(validateTask.validateOnUpdate)
-  .delete();
+  .patch(validateTask.validateOnUpdate, taskController.updateTask)
+  .delete(taskController.removeTask);
+
+  
 
 // error handler
-app.use((err,req,res,next)=>{
-  res.status(err?.status ?? 500).send({
-    message: err?.message ?? 'Internal server error'
-  })
-})
+//app.use(errorHandlers.sequelizeErrorHandler, errorHandlers.errorHandler);
 
 module.exports = app;

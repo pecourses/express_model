@@ -7,6 +7,7 @@ const VALIDATION_CREATE_SCHEMA = yup.object({
 })
 module.exports.validateOnCreate = async(req, res, next) => {
   const {body} =req; 
+  console.log('val.object :>> ', body);
   try{
     await VALIDATION_CREATE_SCHEMA.validate(body);
     next();
