@@ -43,10 +43,10 @@ module.exports.updateTask = async (req, res, next) => {
     body, params: { taskId }
   } = req;
   try {
-    const foundTask = await Task.findById(taskId);
-    console.log('foundTask :>> ', foundTask);
+    const foundTask = await Task.findByPk(taskId);
+    //console.log('foundTask :>> ', foundTask);
     if (foundTask) {
-      const updatedTask = await Task.update(taskId, body);
+      const updatedTask = await foundTask.update(body);
       return res.status(200).send(updatedTask);
     }
     res.status(404).send('The task not found');

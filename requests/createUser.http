@@ -1,0 +1,11 @@
+POST http://localhost:3000/api/users
+Content-Type: application/vnd.api+json
+
+{
+    "firstName": "Test",
+    "lastName": "Testovich",
+    "email": "test3@test.test",
+    "passwordHash": "admin",
+    "birthday": "2000/12/13",
+    "gender": "male"
+}
