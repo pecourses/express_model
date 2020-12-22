@@ -1,4 +1,5 @@
 'use strict';
+const bcrypt = require('bcrypt');
 const {
   Model
 } = require('sequelize');
@@ -29,6 +30,9 @@ module.exports = (sequelize, DataTypes) => {
     passwordHash: {
       type: DataTypes.TEXT,
       allowNull: false,
+      set(value) {
+        this.setDataValue('passwordHash', bcrypt.hashSync(value, 10));
+      }
     },
     birthday: {
       type: DataTypes.DATEONLY,

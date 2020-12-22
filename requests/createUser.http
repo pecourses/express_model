@@ -4,8 +4,8 @@ Content-Type: application/vnd.api+json
 {
     "firstName": "Test",
     "lastName": "Testovich",
-    "email": "test4@test.test",
+    "email": "test6@test.test",
     "passwordHash": "admin",
-    "birthday": "2000/12/13",
+    "birthday": "2000-12-13",
     "gender": "male"
 }
